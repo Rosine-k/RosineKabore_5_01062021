@@ -1,0 +1,13 @@
+  .basket {
+   font-weight: 500;
+  }
+
+  .logo {
+   @media only screen and (min-width: 250px) and (max-width: 450px) {
+     height: 3em;
+     width: 3em;
+    }
+  }
+
+   
+
