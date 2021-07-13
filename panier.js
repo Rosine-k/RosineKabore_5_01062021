@@ -17,3 +17,22 @@
         }, false)
       })
   })()
+
+  function addPanier(cameraId){
+    let listPanier = getPanier();
+    listPanier.push(cameraId);
+    savePanier(listPanier);
+  }
+
+  function getPanier(){
+    let listPanier = localStorage.getItem("listPanier");
+    if(listPanier == null){
+      return [];
+    }else{
+      return JSON.parse(listPanier);
+    }
+  }
+
+  function savePanier(listPanier){
+    localStorage.setItem("listPanier", JSON.stringify(listPanier));
+  }
