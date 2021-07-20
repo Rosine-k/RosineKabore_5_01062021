@@ -48,31 +48,49 @@
         <main>
 
             <div class="bloc d-block w-100" id="panier-title">
-                <div class="container bloc-lg text-center">
+                <div class="container bloc-lg ">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h1>Panier</h1>
+                            <h1 class="text-left">Votre panier</h1>
+
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>   
+            
+            <div class="bloc d-block w-100" id="panier-commande">
+                <div class="container bloc-lg ">
+                    <div class="row card-panier">
 
-            <div class="bloc d-block w-100" id="articles">
-                <div class="container bloc-lg text-left">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h2>Les articles sélectionnés</h2>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="${camera.imageUrl}" width="100" height="100" alt="zurss">
+                                <div class="card-body bgc-primary">
+                                   <h2 class="card-title black">${camera.name}</h2>
+                                   <label for="quantity">Quantité</label>
+                                   <select>
+                                     <option>1</option>
+                                     <option>2</option>
+                                     <option>3</option>
+                                     <option>4</option>
+                                     <option>5</option>
+                                     <option>6</option>
+                                     <option>7</option>
+                                     <option>8</option>
+                                     <option>9</option>
+                                     <option>10+</option>
+                                    </select>
+
+                                 <button class="btn">Supprimer</button>
+                                 <div class="card-text">Total () : </div>
+
+                                </div>
+                            </div>        
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="bloc l-block" id="formulaire">
-                <div class="container bloc-lg text-center">
-                    <div class="row">
                         <div class="col-sm-6">
 
-                            <h3>Vos coordonnées</h3>
+                            <h2>Vos coordonnées</h2>
 
 
                            <form class="needs-validation" novalidate>
@@ -133,21 +151,17 @@
                                   <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
                                 </div>
 
-                                <button class="bloc-button bgc-primary" type="submit">
+                                <button class=" btn  btn-validation bloc-button bgc-primary" type="submit">
                                  Valider votre commande
                                 </button>
                 
-                            </form>
-
-                           
+                            </form>                           
 
                         </div>
 
                     </div>
                 </div>
-
-
-            </div>
+            </div> 
 
             
 
