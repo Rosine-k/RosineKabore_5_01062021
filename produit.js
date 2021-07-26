@@ -1,3 +1,12 @@
+const createProduct = (data) =>{
+  data.price = data.price / 100;
+
+  let price = priceFormat(data.price);
+
+  document.getElementById('card-produit').style.visibility = 'visible';
+  
+}
+
 const params = new URLSearchParams(window.location.search);
 let idProduct = params.get('idProduct');
 
@@ -6,16 +15,17 @@ let url = "http://localhost:3000/api/cameras/" + idProduct;
 fetch(url)
   .then(response => response.json())
   .then(response => {
-
+     console.log(response);
      let product = createProduct(response);
-     document.getElementById("card-produit").appendChild(product);
+     console.log(product);
+     
 
      document.querySelector(".card-produit") .innerHTML +=    `<div class="col-sm-8">
                                                                     <div class="card">
                                                                         <img class="card-img-top" src="${camera.imageUrl}" width="250" height="250" alt="zurss">
                                                                         <div class="card-body bgc-primary">
                                                                             <h3 class="card-title black">${camera.name}</h3>
-                                                                            <h4 class="card-price black">${camera.price / 100} €</h4>
+                                                                            <h4 class="card-price black">${camera.price} €</h4>
                                                                             <label for="choice">Choisissez une option</label>
                                                                             <select>
                                                                              <option>${camera.lenses}</option>
@@ -41,7 +51,7 @@ fetch(url)
 
    })
 
-  .catch(error => document.location.href="../erreur.html");
+  
 
  
   
