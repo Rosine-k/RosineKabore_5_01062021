@@ -1,18 +1,17 @@
 (async function() {
-  const cameraId = getCameraId()
-  const camera = await getCamera(cameraId)
-  hydrateCamera(camera)
+  const cameraId = getCameraId();
+  const camera = await showCamera(cameraId);
+  //retirer hydrateCamera(camera) 
 })()
 
 function getCameraId() {
-  return new URL(location.href).searchParams.get("id")
+  return new URL(location.href).searchParams.get("id");
 }
 
-function getCameraId(cameraId) {
+function showCamera(cameraId) {
   return fetch(`http://localhost:3000/api/cameras/${cameraId}`)
    .then(data => data.json())
-   .then(jsonListCamera => {
-     for(let jsonCamera of jsonListCamera){
+   .then(jsonCamera => {
        let camera = new Camera(jsonCamera);
        document.querySelector(".card-produit") .innerHTML +=    `<div class="col-sm-8">
                                                                     <div class="card">
@@ -22,7 +21,7 @@ function getCameraId(cameraId) {
                                                                             <h4 class="card-price black">${camera.price} €</h4>
                                                                             <label for="choice">Choisissez une option</label>
                                                                             <select class="lenses">
-                                                                             <option>${camera.lenses}</option>
+                                                                             
                                                                             </select>
                                                                             <label for="quantity">Quantité</label>
                                                                             <select>
@@ -42,17 +41,14 @@ function getCameraId(cameraId) {
                                                                         </div>
                                                                     </div>       
                                                                 </div>` ; 
-
-   }})
+    addProductOption(jsonCamera);
+  })
 }
 
-const optionProduit = cameraId;
-let structureOptions = [];
-
-for (let i = 0; i < optionProduit.length; i++) {
-  structureOptions =
-    structureOptions +
-    ` <option value="${i+1}>${optionProduit[i]}</option> `
+function addProductOption(jsonCamera) {
+  for(let itemOption of jsonCamera.lenses) {
+    document.querySelector(".lenses").innerHTML += `<option>${itemOption}</option>`;
+  }
 }
 
    
