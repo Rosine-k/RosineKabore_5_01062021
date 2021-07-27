@@ -21,7 +21,7 @@ function getCameraId(cameraId) {
                                                                             <h3 class="card-title black">${camera.name}</h3>
                                                                             <h4 class="card-price black">${camera.price} €</h4>
                                                                             <label for="choice">Choisissez une option</label>
-                                                                            <select>
+                                                                            <select class="lenses">
                                                                              <option>${camera.lenses}</option>
                                                                             </select>
                                                                             <label for="quantity">Quantité</label>
@@ -46,6 +46,14 @@ function getCameraId(cameraId) {
    }})
 }
 
+const optionProduit = cameraId;
+let structureOptions = [];
+
+for (let i = 0; i < optionProduit.length; i++) {
+  structureOptions =
+    structureOptions +
+    ` <option value="${i+1}>${optionProduit[i]}</option> `
+}
 
    
    

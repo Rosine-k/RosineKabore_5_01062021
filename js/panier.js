@@ -48,7 +48,7 @@ fetch('http://localhost:3000/api/cameras')
  .then(jsonListCamera => {
      for(let jsonCamera of jsonListCamera){
         let camera = new Camera(jsonCamera);
-    document.querySelector(".card-panier") .innerHTML +=  `<div class="col-sm-6">
+      document.querySelector(".card-panier") .innerHTML +=  `<div class="col-sm-6">
                                                              <div class="card">
                                                                <img class="card-img-top" src="${camera.imageUrl}" width="100" height="100" alt="zurss">
                                                                <div class="card-body bgc-primary">
