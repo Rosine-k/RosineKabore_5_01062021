@@ -1,7 +1,6 @@
 (async function() {
   const cameraId = getCameraId();
   const camera = await showCamera(cameraId);
-  //retirer hydrateCamera(camera) 
 })()
 
 function getCameraId() {
@@ -37,7 +36,7 @@ function showCamera(cameraId) {
                                                                               <option>10+</option>
                                                                             </select>
 
-                                                                            <button class="btn btn-panier addPanier" type="button" data-id=${camera._id}>Ajouter au panier</button>
+                                                                            <button class="btn btn-panier border-dark addPanier" type="button" data-id=${camera._id}>Ajouter au panier</button>
                                                                         </div>
                                                                     </div>       
                                                                 </div>` ; 
@@ -51,8 +50,39 @@ function addProductOption(jsonCamera) {
   }
 }
 
+
+
+//Sélection du bouton
+const btnPanier = document.querySelector(".btn-panier");
+console.log(btnPanier);
+
+//Envoie au panier
+btnPanier.addEventListener("click", (event)=> {
+event.preventDefault();
+
+//Le choix de l'utilisateur
+const choixLenses = itemOption.Value;
+console.log(choixLenses);
+
+//Récupération du choix de l'utilisateur
+let produitSelection = {
+  nom: camera.name,
+  id: camera._id,
+  option: itemOption,
+  quantite: quantiteProduit,
+  prix: camera.price / 100,
+}
+
+console.log(produitSelection);
    
-   
+})
+
+//Le choix d'une quantité
+let quantiteProduit = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+
+//Local storage
+
+
 
   
 
