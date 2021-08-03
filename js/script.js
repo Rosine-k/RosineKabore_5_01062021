@@ -1,3 +1,4 @@
+//récupération des produits à partir de l'API et affichage
 fetch('http://localhost:3000/api/cameras')
    .then(data => data.json())
    .then(jsonListCamera => {

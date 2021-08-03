@@ -3,6 +3,7 @@
   const camera = await showCamera(cameraId);
 })()
 
+//récupération de l'id du produit
 function getCameraId() {
   return new URL(location.href).searchParams.get("id");
 }
@@ -36,7 +37,7 @@ function showCamera(cameraId) {
                                                                               <option>10+</option>
                                                                             </select>
 
-                                                                            <button class="btn btn-panier border-dark addPanier" type="button" data-id=${camera._id}>Ajouter au panier</button>
+                                                                            <button class="btn btn-panier border-dark addPanier" type="button">Ajouter au panier</button>
                                                                         </div>
                                                                     </div>       
                                                                 </div>` ; 
@@ -44,6 +45,7 @@ function showCamera(cameraId) {
   })
 }
 
+//récupération des options
 function addProductOption(jsonCamera) {
   for(let itemOption of jsonCamera.lenses) {
     document.querySelector(".lenses").innerHTML += `<option>${itemOption}</option>`;
@@ -74,13 +76,43 @@ let produitSelection = {
 }
 
 console.log(produitSelection);
-   
-})
 
 //Le choix d'une quantité
-let quantiteProduit = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+let quantiteProduit = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]; //document.queryselector(".quantity") ?
 
 //Local storage
+let produitEnregistre = JSON.parse(localStorage.getItem("produit"));
+
+//si déja produits enregistrés
+if(produitEnregistre) {
+  produitEnregistre.push(produitSelection);
+  localStorage.setItem("produit", JSON.stringify()) 
+  console.log(produitEnregistre);
+  fenetreConfirmation();
+}
+//si panier vide
+else{
+  produitEnregistre = [];
+  produitEnregistre.push(produitSelection);
+  localStorage.setItem("produit", JSON.stringify()) 
+  console.log(produitEnregistre);
+  fenetreConfirmation();
+}
+
+//fenêtre de confirmation et retour à l'accueil ou aller au panier
+const fenetreConfirmation = () =>{
+  if(window.confirm(`${camera.name} option: ${itemOption} a bien été ajouté au panier
+  Appuyez sur OK pour consulter le panier ou sur ANNULER pour revenir à la page d'accueil`)) {
+   window.location.href ="panier.html";
+  }
+  else{
+    window.location.href ="index.html";
+  }
+
+}
+   
+});
+
 
 
 
