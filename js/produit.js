@@ -8,23 +8,24 @@ function getCameraId() {
   return new URL(location.href).searchParams.get("id");
 }
 
+//récupération des informations de l'id sélectionné
 function showCamera(cameraId) {
   return fetch(`http://localhost:3000/api/cameras/${cameraId}`)
    .then(data => data.json())
    .then(jsonCamera => {
        let camera = new Camera(jsonCamera);
-       document.querySelector(".card-produit") .innerHTML +=    `<div class="col-sm-8">
+       document.querySelector(".card-produit") .innerHTML +=    `<div class="col-sm-8 mx-auto">
                                                                     <div class="card">
                                                                         <img class="card-img-top" src="${camera.imageUrl}" width="250" height="250" alt="zurss">
                                                                         <div class="card-body bgc-primary">
                                                                             <h3 class="card-title black">${camera.name}</h3>
-                                                                            <h4 class="card-price black">${camera.price} €</h4>
+                                                                            <h4 class="card-price black">${camera.price / 100} €</h4>
                                                                             <label for="choice">Choisissez une option</label>
-                                                                            <select class="lenses">
+                                                                            <select name="option_lense" class="lenses">
                                                                              
                                                                             </select>
                                                                             <label for="quantity">Quantité</label>
-                                                                            <select>
+                                                                            <select name="quantity-product">
                                                                               <option>1</option>
                                                                               <option>2</option>
                                                                               <option>3</option>
@@ -42,6 +43,67 @@ function showCamera(cameraId) {
                                                                     </div>       
                                                                 </div>` ; 
     addProductOption(jsonCamera);
+
+    //Sélection du bouton
+    const btnPanier = document.querySelector(".btn-panier");
+    console.log(btnPanier);
+
+    //Envoie au panier
+    btnPanier.addEventListener("click", (event)=> {
+     event.preventDefault();
+
+     //création de la constante des options
+     const selectLenses = document.querySelector("#option_lense");
+
+    //Le choix de l'utilisateur
+    const choixLenses = selectLenses.Value; 
+    console.log(choixLenses);
+
+   //Récupération du choix de l'utilisateur
+   let produitSelection = {
+     nom: camera.name,
+     id: camera._id,
+     option: selectLenses,
+     quantite: quantiteProduit,
+     prix: camera.price / 100,
+    }
+
+ console.log(produitSelection);
+
+ //Le choix d'une quantité
+ let quantiteProduit = document.queryselector("#quantity-product");
+
+ //Local storage
+ let produitEnregistre = JSON.parse(localStorage.getItem("produit"));
+
+ //si déja produits enregistrés
+ if(produitEnregistre) {
+   produitEnregistre.push(produitSelection);
+   localStorage.setItem("produit", JSON.stringify()) 
+   console.log(produitEnregistre);
+   fenetreConfirmation();
+ }
+ //si panier vide
+ else{
+   produitEnregistre = [];
+   produitEnregistre.push(produitSelection);
+   localStorage.setItem("produit", JSON.stringify()) 
+   console.log(produitEnregistre);
+   fenetreConfirmation();
+ }
+
+ //fenêtre de confirmation et retour à l'accueil ou aller au panier
+ const fenetreConfirmation = () =>{
+   if(window.confirm(`${camera.name} option: ${itemOption} a bien été ajouté au panier
+    Appuyez sur OK pour consulter le panier ou sur ANNULER pour revenir à la page d'accueil`)) {
+    window.location.href ="panier.html";
+   }
+   else{
+     window.location.href ="index.html";
+   }
+  }
+   
+});
   })
 }
 
@@ -54,64 +116,6 @@ function addProductOption(jsonCamera) {
 
 
 
-//Sélection du bouton
-const btnPanier = document.querySelector(".btn-panier");
-console.log(btnPanier);
-
-//Envoie au panier
-btnPanier.addEventListener("click", (event)=> {
-event.preventDefault();
-
-//Le choix de l'utilisateur
-const choixLenses = itemOption.Value;
-console.log(choixLenses);
-
-//Récupération du choix de l'utilisateur
-let produitSelection = {
-  nom: camera.name,
-  id: camera._id,
-  option: itemOption,
-  quantite: quantiteProduit,
-  prix: camera.price / 100,
-}
-
-console.log(produitSelection);
-
-//Le choix d'une quantité
-let quantiteProduit = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]; //document.queryselector(".quantity") ?
-
-//Local storage
-let produitEnregistre = JSON.parse(localStorage.getItem("produit"));
-
-//si déja produits enregistrés
-if(produitEnregistre) {
-  produitEnregistre.push(produitSelection);
-  localStorage.setItem("produit", JSON.stringify()) 
-  console.log(produitEnregistre);
-  fenetreConfirmation();
-}
-//si panier vide
-else{
-  produitEnregistre = [];
-  produitEnregistre.push(produitSelection);
-  localStorage.setItem("produit", JSON.stringify()) 
-  console.log(produitEnregistre);
-  fenetreConfirmation();
-}
-
-//fenêtre de confirmation et retour à l'accueil ou aller au panier
-const fenetreConfirmation = () =>{
-  if(window.confirm(`${camera.name} option: ${itemOption} a bien été ajouté au panier
-  Appuyez sur OK pour consulter le panier ou sur ANNULER pour revenir à la page d'accueil`)) {
-   window.location.href ="panier.html";
-  }
-  else{
-    window.location.href ="index.html";
-  }
-
-}
-   
-});
 
 
 
