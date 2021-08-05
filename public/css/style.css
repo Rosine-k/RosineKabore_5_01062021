@@ -73,7 +73,7 @@ a:link {
   margin-bottom: 1.5em;
 }
 
-.card-price {
+.card-price, .font-weight-bold {
   font-weight: bolder;
 }
 
