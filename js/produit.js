@@ -52,7 +52,7 @@ function showCamera(cameraId) {
     btnPanier.addEventListener("click", (event)=> {
      event.preventDefault();
 
-     //création de la constante des options
+     //sélection des options
      const selectLenses = document.querySelector("#option_lense");
 
     //Le choix de l'utilisateur
@@ -112,6 +112,54 @@ function addProductOption(jsonCamera) {
   for(let itemOption of jsonCamera.lenses) {
     document.querySelector(".lenses").innerHTML += `<option>${itemOption}</option>`;
   }
+}
+
+//ajouter l'article au panier
+const addPanier = (productData, idElem) =>{
+
+  let arrayCart = [];
+  let isAdded = false;
+
+  //si le panier est vide
+  if (sessionStorage.getItem('produit') === null)
+  {
+      arrayCart = [{value: document.getElementById(idElem).value, id: productData._id}]
+      sessionStorage.setItem('produit', JSON.stringify(arrayCart));
+      sessionStorage.setItem('prixTotal', productData.price);
+  }
+
+  //si le panier n'est pas vide
+  else
+  {   
+      arrayCart = JSON.parse(sessionStorage.getItem('products'));
+
+      //Vérifier si le prdouit est déjà ajouté au panier ou pas
+      for(let product of arrayCart)
+      {
+          if(product.id === productData._id){
+              isAdded = true;
+          }
+      }
+
+      //ajouter le produit au panier s'il ne l'est pas
+      if(!isAdded)
+      {
+          arrayCart.push(({
+              value: document.getElementById(idElem).value,
+              id: productData._id
+              }));
+              sessionStorage.setItem('products', JSON.stringify(arrayCart));
+
+          let prixActu =  parseFloat(sessionStorage.getItem('prixTotal')) + productData.price;
+          sessionStorage.setItem('prixTotal', prixActu);
+
+      }
+
+  }
+
+  //Aficher un message de notification en cas de succès ou de l'echec de l'ajout au panier
+  displayMessage(isAdded);
+  
 }
 
 

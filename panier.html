@@ -68,62 +68,49 @@
                             <h2>Vos coordonnées</h2>
 
 
-                           <form class="needs-validation" novalidate>
+                           <form class="needs-validation formulaire" novalidate>
 
                               <div class=”form-group”>
-                                 <label for="name">Nom</label>
-                                 <input type="text" class="form-control" placeholder="Votre nom" id="name" required>
+                                 <label for="firstName">Nom</label>
+                                 <input type="text" name="lastName" class="form-control" placeholder="Votre nom" id="firstName" required>
                                  <div class="valid-feedback">Ok !</div>
                                  <div class="invalid-feedback">Valeur incorrecte</div>
                                </div>
 
                                <div class=”form-group”>
-                                <label for="name">Prénom</label>
-                                 <input type="text" class="form-control" placeholder="Votre Prénom" id="name" required>
+                                <label for="lastName">Prénom</label>
+                                 <input type="text" name="firstName" class="form-control" placeholder="Votre Prénom" id="lastName" required>
                                  <div class="valid-feedback">Ok !</div>
                                  <div class="invalid-feedback">Valeur incorrecte</div>
                                </div>
 
                                <div class=”form-group”>
-                                <label for="adress">Adresse</label>
-                                 <input type="text" class="form-control" placeholder="Votre adresse" id="adresse" required>
-                                 <div class="valid-feedback">Ok !</div>
-                                 <div class="invalid-feedback">Valeur incorrecte</div>
-                               </div>
-
-                               <div class=”form-group”>
-                                <label for="cp">Code postal</label>
-                                 <input type="number" class="form-control" placeholder="Votre code postal" id="cp" required>
+                                <label for="adresse">Adresse</label>
+                                 <input type="text" name="address" class="form-control" placeholder="Votre adresse" id="adresse" required>
                                  <div class="valid-feedback">Ok !</div>
                                  <div class="invalid-feedback">Valeur incorrecte</div>
                                </div>
 
                                <div class=”form-group”>
                                 <label for="city">Ville</label>
-                                 <input type="text" class="form-control" placeholder="Votre ville" id="city" required>
+                                 <input type="text" name="city" class="form-control" placeholder="Votre ville" id="city" required>
                                  <div class="valid-feedback">Ok !</div>
                                  <div class="invalid-feedback">Valeur incorrecte</div>
                                </div>
 
                                <div class=”form-group”>
                                 <label for="email">Email</label>
-                                 <input type="email" class="form-control" placeholder="Votre e-mail" id="email" required>
+                                 <input type="email" name="email" class="form-control" placeholder="Votre e-mail" id="email" required>
                                  <div class="valid-feedback">Ok !</div>
                                  <div class="invalid-feedback">Valeur incorrecte</div>
                                </div>
 
-                               <div class=”form-group”>
-                                <label for="phone">Téléphone</label>
-                                 <input type="number" class="form-control" placeholder="Votre numéro de téléphone" id="tel" required>
-                                 <div class="valid-feedback">Ok !</div>
-                                 <div class="invalid-feedback">Valeur incorrecte</div>
-                               </div>
-
-                               <div class="form-group">
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="cgu" required>
-                                  <label class="form-check-label" for="cgu">J'accepte les conditions générales de vente</label>
-                                  <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                       <input class="form-check-input" type="checkbox" value="" id="cgu" required>
+                                       <label class="form-check-label" for="cgu">J'accepte les conditions générales de vente</label>
+                                       <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+                                    </div>  
                                 </div>
 
                                 <button class=" btn  btn-validation bloc-button bgc-primary" type="submit">
