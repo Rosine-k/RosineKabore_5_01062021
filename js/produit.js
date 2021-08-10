@@ -131,7 +131,7 @@ const addPanier = (productData, idElem) =>{
   //si le panier n'est pas vide
   else
   {   
-      arrayCart = JSON.parse(sessionStorage.getItem('products'));
+      arrayCart = JSON.parse(sessionStorage.getItem('produit'));
 
       //Vérifier si le prdouit est déjà ajouté au panier ou pas
       for(let product of arrayCart)
@@ -148,7 +148,7 @@ const addPanier = (productData, idElem) =>{
               value: document.getElementById(idElem).value,
               id: productData._id
               }));
-              sessionStorage.setItem('products', JSON.stringify(arrayCart));
+              sessionStorage.setItem('produit', JSON.stringify(arrayCart));
 
           let prixActu =  parseFloat(sessionStorage.getItem('prixTotal')) + productData.price;
           sessionStorage.setItem('prixTotal', prixActu);
@@ -157,8 +157,6 @@ const addPanier = (productData, idElem) =>{
 
   }
 
-  //Aficher un message de notification en cas de succès ou de l'echec de l'ajout au panier
-  displayMessage(isAdded);
   
 }
 

@@ -15,11 +15,15 @@ const affichageRecapitulatif = `
         <div class="card-body bgc-white">
           <h3 class="card-title black font-weight-bold">Votre numéro de commande :${commandeId} </h3>
           <h4 class="card-text black">Le montant : ${prixTotal} €</h4>
-          <h4 class="card-text black">Merci pour votre commande. Vous allez recevoir un mal de confirmation</h4>  
+          <h4 class="card-text black message">Merci pour votre commande. Vous allez recevoir un mal de confirmation</h4>  
           <h4 class="card-text black font-weight-bold">A bientôt !</h4>                                             
         </div>
     </div>       
 </div> `;
+
+//récupérer et afficher le pseudo de l'utilisateur
+let pseudo = params.get('pseudo');
+document.getElementById('message').textContent = "+pseudo+ ";
 
 // affichage de la structure HTML
 recapitulatifCommande.insertAdjacentHTML("afterbegin", affichageRecapitulatif);
@@ -28,3 +32,6 @@ recapitulatifCommande.insertAdjacentHTML("afterbegin", affichageRecapitulatif);
 if(commandeId == null || prixTotal == null) {
   window.location.href="index.html";
 }
+
+//Vider le panier
+sessionStorage.clear();
