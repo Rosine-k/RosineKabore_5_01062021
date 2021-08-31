@@ -55,13 +55,35 @@ function showCamera(cameraId) {
        //sélection des options
        const selectLenses = document.querySelector("#option_lense");
        console.log(selectLenses);
-       
+
        //Le choix de l'utilisateur
        const choixLenses = selectLenses.value; 
        console.log(choixLenses);
 
        //Le choix d'une quantité
       let quantiteProduit = document.querySelector("#quantity-product").value; 
+
+
+       // Ajout du produit au panier
+       var addPanier = function(name, quantity, price) {
+
+        var items = JSON.parse(localStorage.getItem('produit')) || [];
+
+        var item = items.find(item => item.name === name);
+      
+        if (item) {
+          item.quantity += quantity;
+        } else {
+          items.push({
+            name,
+            quantity,
+            price
+          })
+        }
+
+        localStorage.setItem('produit', JSON.stringify(items));
+        console.log(items);
+      }
 
       //Récupération du choix de l'utilisateur
       let produitSelection = {
@@ -76,7 +98,7 @@ function showCamera(cameraId) {
 
        //fenêtre de confirmation et retour à l'accueil ou aller au panier
        const fenetreConfirmation = () =>{
-           if(window.confirm(`${camera.name} option: ${choixLenses} a bien été ajouté au panier
+           if(window.confirm(`${camera.name} option: ${choixLenses} , quantité: ${quantiteProduit} a bien été ajouté au panier
            Appuyez sur OK pour consulter le panier ou sur ANNULER pour revenir à la page d'accueil`)) {
                window.location.href ="panier.html";
            }
