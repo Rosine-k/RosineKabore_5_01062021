@@ -108,23 +108,22 @@ function showCamera(cameraId) {
         }
 
         console.log(localStorage.getItem("produit"));
-       //si déja produits enregistrés
+       
         if(localStorage.getItem("produit") ) {
-            fenetreConfirmation();          
+           //si déja produits enregistrés
+           let produitEnregistre = JSON.parse(localStorage.getItem("produit"));
+           produitEnregistre.push(produitSelection);
+           localStorage.setItem("produit", JSON.stringify(produitSelection)) 
+           console.log(produitEnregistre);
+            
+        }  else {
+            //Local storage vide
             let produitEnregistre = [];
             produitEnregistre.push(produitSelection);
             localStorage.setItem("produit", JSON.stringify(produitSelection)) 
             console.log(produitEnregistre);
-            
-        }  else {
-            //Local storage
-            let produitEnregistre = JSON.parse(localStorage.getItem("produit"));
-            produitEnregistre.push(produitSelection);
-            localStorage.setItem("produit", JSON.stringify(produitSelection)) 
-            console.log(produitEnregistre);
-            fenetreConfirmation();
         }
-   
+        fenetreConfirmation();  
 });
   })
 }
